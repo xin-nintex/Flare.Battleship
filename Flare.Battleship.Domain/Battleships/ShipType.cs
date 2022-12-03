@@ -1,6 +1,6 @@
 ﻿namespace Flare.Battleship.Domain.Battleships;
 
-public enum Ship
+public enum ShipType
 {
     Destroyer = 2,
     Submarine = 3,

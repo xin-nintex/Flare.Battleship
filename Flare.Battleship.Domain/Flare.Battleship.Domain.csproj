@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Flare.Battleship.Domain\Flare.Battleship.Domain.csproj" />
-    </ItemGroup>
-
 </Project>

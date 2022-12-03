@@ -2,7 +2,7 @@
 
 namespace Flare.Battleship.Services.Internals;
 
-internal sealed class ShipTrackingService : TrackingService<ShipPlacement>
+internal sealed class ShipTrackingService : BoardService<ShipPlacement>
 {
     public override bool IsPlaced(ShipPlacement item)
     {

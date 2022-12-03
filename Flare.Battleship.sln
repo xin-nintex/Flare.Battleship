@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship", "Flare.Battleship\Flare.Battleship.csproj", "{483F2B30-600B-48FB-8892-C236AF8FE3DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship.Domain", "Flare.Battleship.Domain\Flare.Battleship.Domain.csproj", "{BC24A4E8-0B3D-41A4-9FFA-EC98AEAA376A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{483F2B30-600B-48FB-8892-C236AF8FE3DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483F2B30-600B-48FB-8892-C236AF8FE3DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483F2B30-600B-48FB-8892-C236AF8FE3DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC24A4E8-0B3D-41A4-9FFA-EC98AEAA376A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC24A4E8-0B3D-41A4-9FFA-EC98AEAA376A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC24A4E8-0B3D-41A4-9FFA-EC98AEAA376A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC24A4E8-0B3D-41A4-9FFA-EC98AEAA376A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

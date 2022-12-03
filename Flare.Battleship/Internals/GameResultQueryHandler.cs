@@ -1,4 +1,6 @@
-﻿using Flare.Battleship.Application.Query;
+﻿using Flare.Battleship.Application.Contracts;
+using Flare.Battleship.Application.Query;
+using Flare.Battleship.Application.Query.Result;
 
 namespace Flare.Battleship.Internals;
 
@@ -13,21 +15,8 @@ internal class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResul
 
     public GameResult Handle(GameResultQuery query)
     {
-        throw new NotImplementedException();
+        var isLost = _gameContext.ShipStatus.All(s => s.IsSunk);
+        var livShips = _gameContext.ShipStatus.Where(s => !s.IsSunk).Select(s => s.Ship);
+        return new GameResult(isLost, livShips);
     }
-}
-
-public class GameResult
-{
-    public bool IsLost { get; }
-}
-
-internal interface IQuery<TResult>
-{
-    
-}
-
-internal interface IQueryHandler<in TQuery, out TResult>
-{
-    TResult Handle(TQuery query);
 }

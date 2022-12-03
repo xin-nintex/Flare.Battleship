@@ -1,6 +1,6 @@
 ﻿namespace Flare.Battleship.Application.Query;
 
-public class GameResultQuery
+public class GameResultQuery 
 {
     
 }

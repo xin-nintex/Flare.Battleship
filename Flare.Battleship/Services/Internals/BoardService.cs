@@ -3,7 +3,7 @@ using Flare.Battleship.Domain.Services;
 
 namespace Flare.Battleship.Services.Internals;
 
-internal abstract class BoardService<T> : IBoardService<T> where T : IEquatable<T>
+public abstract class BoardService<T> : IBoardService<T> where T : IEquatable<T>
 {
     protected readonly Stack<T> TrackingStack;
 

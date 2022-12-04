@@ -7,8 +7,11 @@ using Flare.Battleship.Domain.Exceptions;
 using Flare.Battleship.Handlers;
 using Flare.Battleship.Services;
 
-namespace Flare.Battleship;
+namespace Flare.Battleship.UI.Console;
 
+/// <summary>
+///  Simulates a Dependency Injection Container
+/// </summary>
 public class Game
 {
     private readonly GameContext _gameContext;
@@ -22,12 +25,12 @@ public class Game
         );
     }
 
-    public void CreateBoard(CreateBoardCommand command)
+    private void CreateBoard(CreateBoardCommand command)
     {
         new CreateBoardCommandHandler(_gameContext).Handle(command);
     }
 
-    public AttackResult? TakeAttack(TakeAttackCommand command)
+    private AttackResult? TakeAttack(TakeAttackCommand command)
     {
         new TakeAttackCommandHandler(_gameContext).Handle(command);
         return new AttackResultQueryHandler(_gameContext).Handle(
@@ -35,12 +38,12 @@ public class Game
         );
     }
 
-    public GameResult QueryGameResult(GameResultQuery query)
+    private GameResult QueryGameResult(GameResultQuery query)
     {
         return new GameResultQueryHandler(_gameContext).Handle(query);
     }
 
-    public void PlaceShip(AddBattleshipCommand command)
+    private void PlaceShip(AddBattleshipCommand command)
     {
         new AddBattleshipCommandHandler(_gameContext).Handle(command);
     }
@@ -66,6 +69,7 @@ public class Game
                 StartCell = new Cell(BoardColumn.A, BoardRow.Five)
             }
         );
+        //TODO: place more ships if like
         var rand = new Random();
         while (!token.IsCancellationRequested)
         {
@@ -76,19 +80,19 @@ public class Game
                 if (randCol == 0 || randRow == 0)
                     continue;
                 var attackPosition = new Cell((BoardColumn)randCol, (BoardRow)randRow);
-                Console.WriteLine($"Taking attack at {attackPosition}");
+                System.Console.WriteLine($"Taking attack at {attackPosition}");
                 var result = TakeAttack(new TakeAttackCommand() { AttackPosition = attackPosition });
                 if (result?.IsHit ?? false)
                 {
-                    Console.WriteLine("It's Hit");
+                    System.Console.WriteLine("It's Hit");
                 }
                 else
                 {
-                    Console.WriteLine("It' miss");
+                    System.Console.WriteLine("It' miss");
                 }
 
                 var game = QueryGameResult(new GameResultQuery());
-                Console.WriteLine(
+                System.Console.WriteLine(
                     game.IsLost ? "you have lost" : $"you have {game.LiveShips.Count()} ships left"
                 );
                 if (game.IsLost)
@@ -96,10 +100,10 @@ public class Game
             }
             catch (InvalidAttackPlacementException)
             {
-                Console.WriteLine("random attack is placed before, continuing...");
+                System.Console.WriteLine("random attack is placed before, continuing...");
             }
 
-            await Task.Delay(1000);
+            await Task.Delay(1000, token);
         }
     }
 }

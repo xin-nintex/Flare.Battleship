@@ -3,7 +3,7 @@ using Flare.Battleship.Services.Internals;
 
 namespace Flare.Battleship.Services;
 
-internal sealed class AttackTrackingService : BoardService<AttackPlacement>
+public sealed class AttackTrackingService : BoardService<AttackPlacement>
 {
     public override bool IsPlaced(AttackPlacement item)
     {

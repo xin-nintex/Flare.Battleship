@@ -4,7 +4,7 @@ using Flare.Battleship.Internals.Contracts;
 
 namespace Flare.Battleship.Handlers;
 
-internal class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResult>
+public class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResult>
 {
     private readonly GameContext _gameContext;
 

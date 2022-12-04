@@ -4,7 +4,7 @@ using Flare.Battleship.Handlers.Contracts;
 
 namespace Flare.Battleship.Handlers;
 
-internal class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
+public class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
 {
     private readonly GameContext _gameContext;
 

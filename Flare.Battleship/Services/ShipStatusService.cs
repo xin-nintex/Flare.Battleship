@@ -3,7 +3,7 @@ using Flare.Battleship.Domain.Services;
 
 namespace Flare.Battleship.Services;
 
-internal class ShipStatusService : IShipStatusService
+public class ShipStatusService : IShipStatusService
 {
     private readonly Dictionary<Ship, int> _data;
 

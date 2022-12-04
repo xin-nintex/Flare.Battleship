@@ -4,5 +4,5 @@ namespace Flare.Battleship.Application.Command;
 
 public class TakeAttackCommand
 {
-    public Cell AttackPosition { get; set; }
+    public Cell AttackPosition { get; set; } = null!;
 }

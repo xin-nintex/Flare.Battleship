@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship.UI.Console", "Flare.Battleship.UI.Console\Flare.Battleship.UI.Console.csproj", "{D33B3F1E-9959-45E8-87FA-A2C812CA8120}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship.Domain.Test", "Flare.Battleship.Domain.Test\Flare.Battleship.Domain.Test.csproj", "{D19B764B-7B8B-48CF-8D5B-2C3D96D94869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flare.Battleship.Test", "Flare.Battleship.Test\Flare.Battleship.Test.csproj", "{F661C516-4F54-4503-88B4-5803183A5FB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{D33B3F1E-9959-45E8-87FA-A2C812CA8120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D33B3F1E-9959-45E8-87FA-A2C812CA8120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D33B3F1E-9959-45E8-87FA-A2C812CA8120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D19B764B-7B8B-48CF-8D5B-2C3D96D94869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D19B764B-7B8B-48CF-8D5B-2C3D96D94869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D19B764B-7B8B-48CF-8D5B-2C3D96D94869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D19B764B-7B8B-48CF-8D5B-2C3D96D94869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F661C516-4F54-4503-88B4-5803183A5FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F661C516-4F54-4503-88B4-5803183A5FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F661C516-4F54-4503-88B4-5803183A5FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F661C516-4F54-4503-88B4-5803183A5FB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

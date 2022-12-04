@@ -1,7 +1,7 @@
 ﻿using Flare.Battleship.Application.Query;
 using Flare.Battleship.Application.Query.Result;
 using Flare.Battleship.Domain.Gameplay;
-using Flare.Battleship.Internals.Contracts;
+using Flare.Battleship.Handlers.Contracts;
 
 namespace Flare.Battleship.Handlers;
 

@@ -5,8 +5,8 @@ namespace Flare.Battleship.Application.Command;
 
 public class AddBattleshipCommand
 {
-    public Ship Ship { get; set; }
-    public Cell StartCell { get; set; }
+    public Ship Ship { get; set; } = null!;
+    public Cell StartCell { get; set; } = null!;
     public Orientation Orientation { get; set; }
     public Swing Swing { get; set; }
 }

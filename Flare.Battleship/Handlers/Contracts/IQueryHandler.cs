@@ -1,4 +1,4 @@
-﻿namespace Flare.Battleship.Internals.Contracts;
+﻿namespace Flare.Battleship.Handlers.Contracts;
 
 internal interface IQueryHandler<in TQuery, out TResult>
 {

@@ -4,21 +4,9 @@ using Flare.Battleship.Domain.Exceptions;
 
 namespace Flare.Battleship.Domain.Gameplay;
 
-public readonly struct ShipPlacement : IEquatable<ShipPlacement>
+public record ShipPlacement(Ship Ship, Cell StartCell, Orientation Orientation, Swing Swing)
 {
-    public Ship Ship { get; }
-    private Cell StartCell { get; }
-    private Orientation Orientation { get; }
-    private Swing Swing { get; }
-
-    public ShipPlacement(Ship ship, Cell startCell, Orientation orientation, Swing swing)
-    {
-        Ship = ship;
-        StartCell = startCell;
-        Orientation = orientation;
-        Swing = swing;
-        CheckValidPlacement();
-    }
+    public bool IsValid => CheckValidPlacement();
 
     public bool IsIntersecting(ShipPlacement other)
     {
@@ -30,7 +18,7 @@ public readonly struct ShipPlacement : IEquatable<ShipPlacement>
         return AsCellSpan().Contains(cell);
     }
 
-    private void CheckValidPlacement()
+    private bool CheckValidPlacement()
     {
         var columnIndex = (int)StartCell.Column;
         var offset = Ship.Length;
@@ -54,8 +42,10 @@ public readonly struct ShipPlacement : IEquatable<ShipPlacement>
                     goto default;
                 break;
             default:
-                throw new InvalidShipPlacementException($"{Ship} cannot be placed");
+                return false;
         }
+
+        return true;
     }
 
     private IEnumerable<Cell> AsCellSpan()
@@ -87,7 +77,7 @@ public readonly struct ShipPlacement : IEquatable<ShipPlacement>
     {
         for (var i = start; i < Ship.Length; i++)
         {
-            yield return new Cell((BoardColumn)i, StartCell.Row);
+            yield return StartCell with { Column = (BoardColumn)i };
         }
     }
 
@@ -95,37 +85,7 @@ public readonly struct ShipPlacement : IEquatable<ShipPlacement>
     {
         for (var i = start; i < Ship.Length; i++)
         {
-            yield return new Cell(StartCell.Column, (BoardRow)i);
+            yield return StartCell with { Row = (BoardRow)i };
         }
     }
-
-    #region Equality
-    public bool Equals(ShipPlacement other)
-    {
-        return Ship == other.Ship
-            && StartCell.Equals(other.StartCell)
-            && Orientation == other.Orientation
-            && Swing == other.Swing;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        return obj is ShipPlacement other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Ship, StartCell, (int)Orientation, (int)Swing);
-    }
-
-    public static bool operator ==(ShipPlacement left, ShipPlacement right)
-    {
-        return left.Equals(right);
-    }
-
-    public static bool operator !=(ShipPlacement left, ShipPlacement right)
-    {
-        return !(left == right);
-    }
-    #endregion
 }

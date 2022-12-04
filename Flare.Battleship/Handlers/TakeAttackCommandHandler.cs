@@ -1,8 +1,8 @@
 ﻿using Flare.Battleship.Application.Command;
-using Flare.Battleship.Application.Contracts;
 using Flare.Battleship.Domain.Gameplay;
+using Flare.Battleship.Handlers.Contracts;
 
-namespace Flare.Battleship.Internals;
+namespace Flare.Battleship.Handlers;
 
 internal class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
 {

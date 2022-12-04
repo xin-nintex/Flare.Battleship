@@ -2,9 +2,9 @@
 
 public enum ShipType
 {
-    Destroyer = 2,
-    Submarine = 3,
-    Cruiser = Submarine,
-    Battleship = 4,
-    Carrier = 5,
+    Destroyer,
+    Submarine,
+    Cruiser,
+    Battleship,
+    Carrier,
 }

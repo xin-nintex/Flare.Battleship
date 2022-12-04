@@ -1,8 +1,8 @@
-﻿using Flare.Battleship.Application.Contracts;
-using Flare.Battleship.Application.Query;
+﻿using Flare.Battleship.Application.Query;
 using Flare.Battleship.Application.Query.Result;
+using Flare.Battleship.Internals.Contracts;
 
-namespace Flare.Battleship.Internals;
+namespace Flare.Battleship.Handlers;
 
 internal class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResult>
 {

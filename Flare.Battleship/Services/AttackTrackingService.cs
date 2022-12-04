@@ -1,6 +1,7 @@
 ﻿using Flare.Battleship.Domain.Gameplay;
+using Flare.Battleship.Services.Internals;
 
-namespace Flare.Battleship.Services.Internals;
+namespace Flare.Battleship.Services;
 
 internal sealed class AttackTrackingService : BoardService<AttackPlacement>
 {

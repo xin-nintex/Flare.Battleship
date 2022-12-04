@@ -1,56 +1,26 @@
 ﻿namespace Flare.Battleship.Domain.Battleships;
 
-public readonly struct Ship : IEquatable<Ship>
+public abstract record Ship(ShipType Type, int Length)
 {
-    public ShipType ShipType { get; }
-    public int Length { get; }
+    private record Destroyer() : Ship(ShipType.Destroyer, 2);
 
-    private Ship(ShipType shipType, int length)
-    {
-        ShipType = shipType;
-        Length = length;
-    }
+    private record Submarine() : Ship(ShipType.Submarine, 3);
 
-    public static Ship Destroyer => new(ShipType.Destroyer, 2);
-    public static Ship Submarine => new(ShipType.Submarine, 3);
-    public static Ship Cruiser => new(ShipType.Cruiser, 3);
-    public static Ship Battleship => new(ShipType.Battleship, 4);
-    public static Ship Carrier => new(ShipType.Carrier, 5);
+    private record Cruiser() : Ship(ShipType.Cruiser, 3);
+
+    private record Battleship() : Ship(ShipType.Battleship, 4);
+
+    private record Carrier() : Ship(ShipType.Carrier, 5);
 
     public static IEnumerable<Ship> AllAvailableShips
     {
         get
         {
-            yield return Destroyer;
-            yield return Submarine;
-            yield return Carrier;
-            yield return Battleship;
-            yield return Cruiser;
+            yield return new Destroyer();
+            yield return new Submarine();
+            yield return new Carrier();
+            yield return new Battleship();
+            yield return new Cruiser();
         }
-    }
-
-    public bool Equals(Ship other)
-    {
-        return ShipType == other.ShipType && Length == other.Length;
-    }
-
-    public override bool Equals(object? obj)
-    {
-        return obj is Ship other && Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine((int)ShipType, Length);
-    }
-
-    public static bool operator ==(Ship left, Ship right)
-    {
-        return left.Equals(right);
-    }
-
-    public static bool operator !=(Ship left, Ship right)
-    {
-        return !(left == right);
     }
 }

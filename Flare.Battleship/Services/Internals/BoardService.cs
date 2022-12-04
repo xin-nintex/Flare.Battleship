@@ -3,7 +3,7 @@ using Flare.Battleship.Domain.Services;
 
 namespace Flare.Battleship.Services.Internals;
 
-internal class BoardService<T> : IBoardService<T> where T : IEquatable<T>
+internal abstract class BoardService<T> : IBoardService<T> where T : IEquatable<T>
 {
     protected readonly Stack<T> TrackingStack;
 
@@ -17,9 +17,14 @@ internal class BoardService<T> : IBoardService<T> where T : IEquatable<T>
         return TrackingStack.Any(x => x.Equals(item));
     }
 
-    public virtual void Record(T item)
+    public virtual void Place(T item)
     {
         TrackingStack.Push(item);
+    }
+
+    public void ClearBoard()
+    {
+        TrackingStack.Clear();
     }
 
     public IEnumerator<T> GetEnumerator()

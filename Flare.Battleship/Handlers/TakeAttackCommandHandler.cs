@@ -26,6 +26,7 @@ internal class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
         {
             var ship = _gameContext.ShipPlacements.First(s => s.IsAtCell(item.AttackPosition)).Ship;
             _gameContext.Save(attackPlacement, ship);
+            return;
         }
         _gameContext.Save(attackPlacement, null);
     }

@@ -26,19 +26,19 @@ public record ShipPlacement(Ship Ship, Cell StartCell, Orientation Orientation, 
         switch (Orientation)
         {
             case Orientation.Horizontal when Swing == Swing.Left:
-                if (columnIndex - offset < (int)BoardColumn.LeftEdge)
+                if (columnIndex - offset < (int)BoardColumnEdge.LeftEdge)
                     goto default;
                 break;
             case Orientation.Horizontal when Swing == Swing.Right:
-                if (columnIndex + offset > (int)BoardColumn.RightEdge)
+                if (columnIndex + offset > (int)BoardColumnEdge.RightEdge)
                     goto default;
                 break;
             case Orientation.Vertical when Swing == Swing.Up:
-                if (rowIndex - offset < (int)BoardRow.TopEdge)
+                if (rowIndex - offset < (int)BoardRowEdge.TopEdge)
                     goto default;
                 break;
             case Orientation.Vertical when Swing == Swing.Down:
-                if (rowIndex + offset > (int)BoardRow.BottomEdge)
+                if (rowIndex + offset > (int)BoardRowEdge.BottomEdge)
                     goto default;
                 break;
             default:
@@ -75,7 +75,7 @@ public record ShipPlacement(Ship Ship, Cell StartCell, Orientation Orientation, 
 
     private IEnumerable<Cell> EnumerateCellHorizontal(int start)
     {
-        for (var i = start; i < Ship.Length; i++)
+        for (var i = start; i <= Ship.Length; i++)
         {
             yield return StartCell with { Column = (BoardColumn)i };
         }
@@ -83,7 +83,7 @@ public record ShipPlacement(Ship Ship, Cell StartCell, Orientation Orientation, 
 
     private IEnumerable<Cell> EnumerateCellVertical(int start)
     {
-        for (var i = start; i < Ship.Length; i++)
+        for (var i = start; i <= Ship.Length; i++)
         {
             yield return StartCell with { Row = (BoardRow)i };
         }

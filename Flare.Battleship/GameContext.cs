@@ -28,9 +28,10 @@ public class GameContext
     {
         get
         {
-            return Ship.AllAvailableShips.Select(
-                s => new ShipStatus(s, _shipStatusService.IsSunk(s))
-            );
+            var placedShips = ShipPlacements.Select(s => s.Ship).ToArray();
+            return !placedShips.Any()
+                ? Enumerable.Empty<ShipStatus>()
+                : placedShips.Select(s => new ShipStatus(s, _shipStatusService.IsSunk(s)));
         }
     }
 

@@ -12,6 +12,10 @@ public enum BoardRow
     Eight,
     Nine,
     Ten,
-    TopEdge = One,
-    BottomEdge = Ten
+}
+
+public enum BoardRowEdge
+{
+    TopEdge = BoardRow.One,
+    BottomEdge = BoardRow.Ten
 }

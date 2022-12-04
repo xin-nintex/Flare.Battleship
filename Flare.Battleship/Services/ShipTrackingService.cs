@@ -7,6 +7,6 @@ internal sealed class ShipTrackingService : BoardService<ShipPlacement>
 {
     public override bool IsPlaced(ShipPlacement item)
     {
-        return TrackingStack.Any(s => s.Ship.Type == item.Ship.Type);
+        return TrackingStack.Any(s => s.Ship == item.Ship);
     }
 }

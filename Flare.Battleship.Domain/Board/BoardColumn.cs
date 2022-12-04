@@ -12,6 +12,10 @@ public enum BoardColumn
     H,
     I,
     J,
-    LeftEdge = A,
-    RightEdge = J
+}
+
+public enum BoardColumnEdge
+{
+    LeftEdge = BoardColumn.A,
+    RightEdge = BoardColumn.J
 }

@@ -12,9 +12,13 @@ public class ShipStatusService : IShipStatusService
         _data = new Dictionary<Ship, int>();
     }
 
-    public int GetHitCount(Ship ship) => _data.TryGetValue(ship, out var hit) ? hit : 0;
+    public int GetHitCount(Ship ship) => _data.TryGetValue(ship, out var hit) ? hit : -1;
 
-    public bool IsSunk(Ship ship) => _data.TryGetValue(ship, out var hit) && hit == ship.Length;
+    public bool? IsSunk(Ship ship) => _data.TryGetValue(ship, out var hit) switch
+    {
+        true => hit == ship.Length,
+        false => null
+    };
 
     public void RecordShipHit(Ship ship)
     {

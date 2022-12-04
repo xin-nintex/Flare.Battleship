@@ -12,10 +12,7 @@ public abstract class BoardService<T> : IBoardService<T> where T : IEquatable<T>
         TrackingStack = new Stack<T>();
     }
 
-    public virtual bool IsPlaced(T item)
-    {
-        return TrackingStack.Any(x => x.Equals(item));
-    }
+    public abstract bool IsPlaced(T item);
 
     public virtual void Place(T item)
     {

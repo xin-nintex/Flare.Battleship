@@ -25,7 +25,6 @@ public class AttackResultQueryHandler : IQueryHandler<AttackResultQuery, AttackR
         {
             OccupationType.HitPlacement => new AttackResult(true),
             OccupationType.MissPlacement => new AttackResult(false),
-            _ => throw new ArgumentOutOfRangeException()
         };
     }
 }

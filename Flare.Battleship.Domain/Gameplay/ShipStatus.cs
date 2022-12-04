@@ -2,4 +2,4 @@
 
 namespace Flare.Battleship.Domain.Gameplay;
 
-public record ShipStatus(Ship Ship, bool IsSunk);
+public record ShipStatus(Ship Ship, bool? IsSunk);

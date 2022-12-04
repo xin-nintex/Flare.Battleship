@@ -15,8 +15,8 @@ public class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResult>
 
     public GameResult Handle(GameResultQuery query)
     {
-        var isLost = _gameContext.ShipStatus.All(s => s.IsSunk);
-        var livShips = _gameContext.ShipStatus.Where(s => !s.IsSunk).Select(s => s.Ship);
-        return new GameResult(isLost, livShips);
+        var isLost = _gameContext.ShipStatus.All(s => s.IsSunk.GetValueOrDefault());
+        var livShips = _gameContext.ShipStatus.Where(s => !s.IsSunk.GetValueOrDefault()).Select(s => s.Ship);
+        return new GameResult(isLost, livShips.ToArray());
     }
 }

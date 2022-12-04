@@ -11,6 +11,7 @@ public class GameContext
     private readonly IBoardService<AttackPlacement> _attackBoardService;
     private readonly IShipStatusService _shipStatusService;
 
+    public GameContext(){}
     public GameContext(
         IBoardService<ShipPlacement> shipBoardService,
         IBoardService<AttackPlacement> attackBoardService,
@@ -22,9 +23,9 @@ public class GameContext
         _shipStatusService = shipStatusService;
     }
 
-    public IEnumerable<ShipPlacement> ShipPlacements => _shipBoardService;
-    public IEnumerable<AttackPlacement> AttackPlacements => _attackBoardService;
-    public IEnumerable<ShipStatus> ShipStatus
+    public virtual IEnumerable<ShipPlacement> ShipPlacements => _shipBoardService;
+    public virtual IEnumerable<AttackPlacement> AttackPlacements => _attackBoardService;
+    public virtual IEnumerable<ShipStatus> ShipStatus
     {
         get
         {
@@ -35,7 +36,7 @@ public class GameContext
         }
     }
 
-    public void Save(AttackPlacement attackPlacement, Ship? shipHit)
+    public virtual void Save(AttackPlacement attackPlacement, Ship? shipHit)
     {
         if (_attackBoardService.IsPlaced(attackPlacement))
             throw new InvalidAttackPlacementException(
@@ -46,7 +47,7 @@ public class GameContext
         _attackBoardService.Place(attackPlacement);
     }
 
-    public void Save(ShipPlacement shipPlacement)
+    public virtual void Save(ShipPlacement shipPlacement)
     {
         var isIntersecting = ShipPlacements.Any(s => s.IsIntersecting(shipPlacement));
         if (!shipPlacement.IsValid || _shipBoardService.IsPlaced(shipPlacement) || isIntersecting)
@@ -57,7 +58,7 @@ public class GameContext
         _shipBoardService.Place(shipPlacement);
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         _attackBoardService.ClearBoard();
         _shipBoardService.ClearBoard();

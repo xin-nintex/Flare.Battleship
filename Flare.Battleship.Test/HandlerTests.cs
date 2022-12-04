@@ -14,7 +14,7 @@ public class HandlerTests
     [Test]
     public void AddBattleshipCommand_ShouldPlaceBattleShip_ToContext()
     {
-        var contextMock = new Mock<GameContext>();
+        var contextMock = new Mock<GameStateContext>();
 
         var subject = new AddBattleshipCommandHandler(contextMock.Object);
 
@@ -49,7 +49,7 @@ public class HandlerTests
     [TestCaseSource(nameof(AttackResultData))]
     public void AttackResultQueryHandle_ShouldReturn_Result(IEnumerable<AttackPlacement> data, AttackResultQuery query, AttackResult? expect)
     {
-        var ctx = new Mock<GameContext>();
+        var ctx = new Mock<GameStateContext>();
         ctx.Setup(x => x.AttackPlacements)
             .Returns(data);
         var result = new AttackResultQueryHandler(ctx.Object).Handle(query);
@@ -99,7 +99,7 @@ public class HandlerTests
     [Test]
     public void CreateBoardCommand_ShouldInitialize_GameContext()
     {
-        var ctx = new Mock<GameContext>();
+        var ctx = new Mock<GameStateContext>();
         new CreateBoardCommandHandler(ctx.Object).Handle(new CreateBoardCommand());
         
         ctx.Verify(x => x.Initialize(), Times.Once);
@@ -108,7 +108,7 @@ public class HandlerTests
     [TestCaseSource(nameof(GameResultData))]
     public void GameResultQuery_ShouldReturn_Result(IEnumerable<ShipStatus> data, GameResult expect)
     {
-        var ctx = new Mock<GameContext>();
+        var ctx = new Mock<GameStateContext>();
         ctx.Setup(x => x.ShipStatus)
             .Returns(data);
         var result = new GameResultQueryHandler(ctx.Object).Handle(new GameResultQuery());
@@ -141,7 +141,7 @@ public class HandlerTests
     [TestCaseSource(nameof(TakeAttackData))]
     public void TakeAttackCommand_ShouldRemember_Attack(IEnumerable<ShipPlacement> data, TakeAttackCommand command, bool isHit)
     {
-        var ctx = new Mock<GameContext>();
+        var ctx = new Mock<GameStateContext>();
         ctx.Setup(x => x.ShipPlacements)
             .Returns(data);
         new TakeAttackCommandHandler(ctx.Object).Handle(command);

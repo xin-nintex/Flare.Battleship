@@ -5,14 +5,14 @@ using Flare.Battleship.Domain.Services;
 
 namespace Flare.Battleship;
 
-public class GameContext
+public class GameStateContext
 {
     private readonly IBoardService<ShipPlacement> _shipBoardService;
     private readonly IBoardService<AttackPlacement> _attackBoardService;
     private readonly IShipStatusService _shipStatusService;
 
-    public GameContext(){}
-    public GameContext(
+    public GameStateContext(){} //for unit test
+    public GameStateContext(
         IBoardService<ShipPlacement> shipBoardService,
         IBoardService<AttackPlacement> attackBoardService,
         IShipStatusService shipStatusService

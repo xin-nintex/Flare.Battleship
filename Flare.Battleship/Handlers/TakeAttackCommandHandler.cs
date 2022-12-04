@@ -6,16 +6,16 @@ namespace Flare.Battleship.Handlers;
 
 public class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
-    public TakeAttackCommandHandler(GameContext gameContext)
+    public TakeAttackCommandHandler(GameStateContext gameStateContext)
     {
-        _gameContext = gameContext;
+        _gameStateContext = gameStateContext;
     }
 
     public void Handle(TakeAttackCommand item)
     {
-        var attackPlacement = _gameContext.ShipPlacements.Any(
+        var attackPlacement = _gameStateContext.ShipPlacements.Any(
             s => s.IsAtCell(item.AttackPosition)
         ) switch
         {
@@ -24,10 +24,10 @@ public class TakeAttackCommandHandler : ICommandHandler<TakeAttackCommand>
         };
         if (attackPlacement.Type == OccupationType.HitPlacement)
         {
-            var ship = _gameContext.ShipPlacements.First(s => s.IsAtCell(item.AttackPosition)).Ship;
-            _gameContext.Save(attackPlacement, ship);
+            var ship = _gameStateContext.ShipPlacements.First(s => s.IsAtCell(item.AttackPosition)).Ship;
+            _gameStateContext.Save(attackPlacement, ship);
             return;
         }
-        _gameContext.Save(attackPlacement, null);
+        _gameStateContext.Save(attackPlacement, null);
     }
 }

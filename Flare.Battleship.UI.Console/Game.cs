@@ -14,11 +14,11 @@ namespace Flare.Battleship.UI.Console;
 /// </summary>
 public class Game
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
     public Game()
     {
-        _gameContext = new GameContext(
+        _gameStateContext = new GameStateContext(
             new ShipTrackingService(),
             new AttackTrackingService(),
             new ShipStatusService()
@@ -27,25 +27,25 @@ public class Game
 
     private void CreateBoard(CreateBoardCommand command)
     {
-        new CreateBoardCommandHandler(_gameContext).Handle(command);
+        new CreateBoardCommandHandler(_gameStateContext).Handle(command);
     }
 
     private AttackResult? TakeAttack(TakeAttackCommand command)
     {
-        new TakeAttackCommandHandler(_gameContext).Handle(command);
-        return new AttackResultQueryHandler(_gameContext).Handle(
+        new TakeAttackCommandHandler(_gameStateContext).Handle(command);
+        return new AttackResultQueryHandler(_gameStateContext).Handle(
             new AttackResultQuery() { AttackPosition = command.AttackPosition }
         );
     }
 
     private GameResult QueryGameResult(GameResultQuery query)
     {
-        return new GameResultQueryHandler(_gameContext).Handle(query);
+        return new GameResultQueryHandler(_gameStateContext).Handle(query);
     }
 
     private void PlaceShip(AddBattleshipCommand command)
     {
-        new AddBattleshipCommandHandler(_gameContext).Handle(command);
+        new AddBattleshipCommandHandler(_gameStateContext).Handle(command);
     }
 
     public async Task GameLoop(CancellationToken token)

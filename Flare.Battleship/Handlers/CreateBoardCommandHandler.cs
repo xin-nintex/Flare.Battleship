@@ -5,15 +5,15 @@ namespace Flare.Battleship.Handlers;
 
 public class CreateBoardCommandHandler : ICommandHandler<CreateBoardCommand>
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
-    public CreateBoardCommandHandler(GameContext gameContext)
+    public CreateBoardCommandHandler(GameStateContext gameStateContext)
     {
-        _gameContext = gameContext;
+        _gameStateContext = gameStateContext;
     }
 
     public void Handle(CreateBoardCommand item)
     {
-        _gameContext.Initialize();
+        _gameStateContext.Initialize();
     }
 }

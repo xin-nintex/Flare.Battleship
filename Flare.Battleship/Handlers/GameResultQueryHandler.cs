@@ -6,17 +6,17 @@ namespace Flare.Battleship.Handlers;
 
 public class GameResultQueryHandler : IQueryHandler<GameResultQuery, GameResult>
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
-    public GameResultQueryHandler(GameContext gameContext)
+    public GameResultQueryHandler(GameStateContext gameStateContext)
     {
-        _gameContext = gameContext;
+        _gameStateContext = gameStateContext;
     }
 
     public GameResult Handle(GameResultQuery query)
     {
-        var isLost = _gameContext.ShipStatus.All(s => s.IsSunk.GetValueOrDefault());
-        var livShips = _gameContext.ShipStatus.Where(s => !s.IsSunk.GetValueOrDefault()).Select(s => s.Ship);
+        var isLost = _gameStateContext.ShipStatus.All(s => s.IsSunk.GetValueOrDefault());
+        var livShips = _gameStateContext.ShipStatus.Where(s => !s.IsSunk.GetValueOrDefault()).Select(s => s.Ship);
         return new GameResult(isLost, livShips.ToArray());
     }
 }

@@ -6,15 +6,15 @@ namespace Flare.Battleship.Handlers;
 
 public class AddBattleshipCommandHandler : ICommandHandler<AddBattleshipCommand>
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
-    public AddBattleshipCommandHandler(GameContext gameContext)
+    public AddBattleshipCommandHandler(GameStateContext gameStateContext)
     {
-        _gameContext = gameContext;
+        _gameStateContext = gameStateContext;
     }
     public void Handle(AddBattleshipCommand item)
     {
         var placement = new ShipPlacement(item.Ship, item.StartCell, item.Orientation, item.Swing);
-        _gameContext.Save(placement);
+        _gameStateContext.Save(placement);
     }
 }

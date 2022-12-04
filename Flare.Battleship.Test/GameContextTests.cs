@@ -12,7 +12,7 @@ public class GameContextTests
     private Mock<IShipStatusService> _shipStatusServiceMock = null!;
     private Mock<IBoardService<ShipPlacement>> _shipPlacementServiceMock = null!;
     private Mock<IBoardService<AttackPlacement>> _attackPlacementServiceMock = null!;
-    private GameContext _subject = null!;
+    private GameStateContext _subject = null!;
 
     [SetUp]
     public void Setup()
@@ -20,7 +20,7 @@ public class GameContextTests
         _attackPlacementServiceMock = new Mock<IBoardService<AttackPlacement>>();
         _shipPlacementServiceMock = new Mock<IBoardService<ShipPlacement>>();
         _shipStatusServiceMock = new Mock<IShipStatusService>();
-        _subject = new GameContext(
+        _subject = new GameStateContext(
             _shipPlacementServiceMock.Object,
             _attackPlacementServiceMock.Object,
             _shipStatusServiceMock.Object

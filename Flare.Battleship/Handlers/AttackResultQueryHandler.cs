@@ -7,21 +7,21 @@ namespace Flare.Battleship.Handlers;
 
 public class AttackResultQueryHandler : IQueryHandler<AttackResultQuery, AttackResult?>
 {
-    private readonly GameContext _gameContext;
+    private readonly GameStateContext _gameStateContext;
 
-    public AttackResultQueryHandler(GameContext gameContext)
+    public AttackResultQueryHandler(GameStateContext gameStateContext)
     {
-        _gameContext = gameContext;
+        _gameStateContext = gameStateContext;
     }
 
     public AttackResult? Handle(AttackResultQuery query)
     {
-        var hasBeenAttacked = _gameContext.AttackPlacements.Any(
+        var hasBeenAttacked = _gameStateContext.AttackPlacements.Any(
             a => a.Cell == query.AttackPosition
         );
         if (!hasBeenAttacked)
             return null;
-        return _gameContext.AttackPlacements.First(a => a.Cell == query.AttackPosition).Type switch
+        return _gameStateContext.AttackPlacements.First(a => a.Cell == query.AttackPosition).Type switch
         {
             OccupationType.HitPlacement => new AttackResult(true),
             OccupationType.MissPlacement => new AttackResult(false),
